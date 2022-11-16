@@ -6,7 +6,11 @@
     display: none;
 }
 
-#view_highscores {
-    background-color: purple; 
+#final_score_section {
+    display: none;
+}
 
+
+#high_scores_section {
+     display: none;
 }
