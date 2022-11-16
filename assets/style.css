@@ -1,0 +1,12 @@
+#intro_section {
+    display: block;
+}
+
+#questions_section {
+    display: none;
+}
+
+#view_highscores {
+    background-color: purple; 
+
+}
