@@ -10,7 +10,7 @@ When the game begins, click "Start Quiz" to begin.
 ![intro page](assets/images/intro_page.png)
 
 The timer begins at 60 and the user is prompted to select an answer to a coding question. If the correct option is selected, "correct" is displayed and the next question is shown. If the wrong option is selected, "wrong" is displayed and the timer decrements by ten seconds. 
-![question page](assets/images/question_page)
+![question page](assets/images/question_png)
 
 If the timer reaches 0 before all questions are answered, the users total points are 0, otherwise the users points are how many seconds were left when the quiz was completed. The final page displays the users score & prompts the user to enter there initials and click the submit button
 ![game over page](assets/images/game_over.png)
