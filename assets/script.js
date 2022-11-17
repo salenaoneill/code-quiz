@@ -2,7 +2,8 @@
 var start_button = document.getElementById('start_button');
 var intro_section = document.getElementById('intro_section');
 var questions_section = document.getElementById('questions_section');
-var final_score_section = document.getElementById('final_score_section')
+var final_score_section = document.getElementById('final_score_section');
+var high_scores_section = document.getElementById('high_scores_section');
 var timer = document.getElementById('timer');
 var the_question = document.getElementById('the_question'); 
 var option1 = document.getElementById('option1');
@@ -12,6 +13,9 @@ var option4 = document.getElementById('option4');
 var final_score = document.getElementById('final_score');
 var correct_or_wrong = document.getElementById('correct_or_wrong');
 var view_highscores = document.getElementById('view_highscores');
+var submit_score = document.getElementById('submit_score');
+var your_initials = document.getElementById('your_initials');
+var all_scores = document.getElementById('all_scores');
 
 
 start_button.addEventListener("click", function(){
@@ -34,11 +38,12 @@ function start_timer() {
     }, 1000);
   }
 
+var score = 0;
 function finish() {
     questions_section.style.display = "none";
     final_score_section.style.display = "block";
-    //score = whatever time is left on timer when function is returned
-    final_score.textContent = "Your final score is" + score
+    score = seconds_left;
+    final_score.textContent = "Your final score is " + score;
   } 
 
  
@@ -88,42 +93,59 @@ function show_questions() {
     //if the selected option matches the correct answer, display correct 
     // and increase question index by 1.
     
-    var option_click = function() {
-        var isCorrect = this.innerHTML === my_questions[question_index].answer;
-        if (isCorrect) {
-            correct_or_wrong.textContent = "Correct!";
-            if (question_index < my_questions.length) {
-                question_index++;
-                show_questions();
-            }
-            else {
-                finish();
-            }
-        }
-        else {
-            correct_or_wrong.textContent = "Wrong :(";
-            if (seconds_left <= 10) {
-                seconds_left = 1;
-            }
-            else {
-                seconds_left -= 10;
-            }
-            
-        }
-    }
+   
 
-    option1.addEventListener("click", option_click);
-    option2.addEventListener("click", option_click);
-    option3.addEventListener("click", option_click);
-    option4.addEventListener("click", option_click);
+    
         
     //if the selected option does not match the correct answer, subtract 10 from the timer and display wrong.
-
     //when all the questions are answered, return function finish()
 }
+
+var option_click = function() {
+    var isCorrect = this.innerHTML === my_questions[question_index].answer;
+    if (isCorrect) {
+        correct_or_wrong.textContent = "Correct!";
+        if (question_index < my_questions.length-1) {
+            question_index++;
+            show_questions();
+        }
+        else {
+            finish();
+        }
+    }
+    else {
+        correct_or_wrong.textContent = "Wrong :(";
+        if (seconds_left <= 10) {
+            seconds_left = 1;
+        }
+        else {
+            seconds_left -= 10;
+        }
+        
+    }
+}
  
+option1.addEventListener("click", option_click);
+option2.addEventListener("click", option_click);
+option3.addEventListener("click", option_click);
+option4.addEventListener("click", option_click);
+
 view_highscores.addEventListener("click", function(){
     high_scores_section.style.display = "block";
     questions_section.style.display = "none";
 
-})
+});
+
+submit_score.addEventListener("click", function(){
+    localStorage.setItem(your_initials.value, score); 
+    high_scores_section.style.display = "block";
+    final_score_section.style.display = "none";
+    for (var i = 0; i<localStorage.length; i++) {
+        var initials = localStorage.key(i);
+        var high_score = localStorage.getItem(initials);
+        var score_string = initials + " - " + high_score;
+        var li = document.createElement("li");
+        li.innerHTML = score_string;
+        all_scores.appendChild(li);
+    }
+});
