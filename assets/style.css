@@ -14,3 +14,11 @@
 #high_scores_section {
      display: none;
 }
+
+.button {
+    background-color: pink;
+}
+
+#timer {
+    display: none;
+}

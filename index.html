@@ -10,8 +10,6 @@
 <body>
    <header>
        <nav>
-           <button id="view_highscores">View high scores</button>
- 
            <div id="timer">Time:</div>
        </nav>
    </header>
@@ -23,7 +21,7 @@
            <p>
                Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!
            </p>
-           <button id="start_button">
+           <button id="start_button" class="button">
                Start Quiz
            </button>
        </section>
@@ -31,19 +29,20 @@
        <section id="questions_section">
            <h3 id="the_question">The Question</h3>
            <ul>
-               <li><button id="option1">Option 1</button></li>
-               <li><button id="option2">Option 2</button></li>
-               <li><button id="option3">Option 3</button></li>
-               <li><button id="option4">Option 4</button></li>
+               <li><button class="button" id="option1">Option 1</button></li>
+               <li><button class="button" id="option2">Option 2</button></li>
+               <li><button class="button" id="option3">Option 3</button></li>
+               <li><button class="button" id="option4">Option 4</button></li>
            </ul>
-           <h2 id="correct_or_wrong">Correct or Wrong</h2>
+           <h2 id="correct_or_wrong"></h2>
         </section>
 
         <section id="final_score_section">
             <h2>All done!</h2> 
             Your initials: <input type="text" id="your_initials">
-            <button id="submit_score">Submit</button>
+            <button class="button" id="submit_score">Submit</button>
             <p id="final_score">Final score</p>
+            <button class="button" id="try_again_button">Try again!</button>
         </section>
 
         <section id="high_scores_section">
@@ -55,7 +54,7 @@
  
 
 
-        
+
    </main>
 
 <script src="assets/script.js"></script>

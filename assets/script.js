@@ -1,4 +1,4 @@
-//defining variables
+//defining my variables :)
 var start_button = document.getElementById('start_button');
 var intro_section = document.getElementById('intro_section');
 var questions_section = document.getElementById('questions_section');
@@ -12,15 +12,25 @@ var option3 = document.getElementById('option3');
 var option4 = document.getElementById('option4');
 var final_score = document.getElementById('final_score');
 var correct_or_wrong = document.getElementById('correct_or_wrong');
-var view_highscores = document.getElementById('view_highscores');
 var submit_score = document.getElementById('submit_score');
 var your_initials = document.getElementById('your_initials');
 var all_scores = document.getElementById('all_scores');
+var try_again_button = document.getElementById('try_again_button')
 
+//initial page
+function start () {
+intro_section.style.display = "block"; 
+timer.style.display = "none";
+} 
+start();
 
+//when start button is clicked,
+//start the timer and display questions.
 start_button.addEventListener("click", function(){
+    seconds_left = 60;
     intro_section.style.display = "none";
     questions_section.style.display = "block";
+    timer.style.display = "block";
     start_timer();
     show_questions();
 });
@@ -38,16 +48,25 @@ function start_timer() {
     }, 1000);
   }
 
+//when the game is over,
+//calculate and display my score.
 var score = 0;
 function finish() {
+    timer.style.display = "none";
     questions_section.style.display = "none";
     final_score_section.style.display = "block";
     score = seconds_left;
     final_score.textContent = "Your final score is " + score;
+    try_again_button.addEventListener("click", function(){
+        intro_section.style.display = "block";
+        final_score_section.style.display = "none";
+        start();
+        
+    });
   } 
 
  
-
+//the questions array
 var my_questions = [
     {
       question: "Commonly used data types DO NOT include",
@@ -82,6 +101,7 @@ var my_questions = [
     }
   ];
 
+//display my questions
 var question_index = 0;
 function show_questions() {
     the_question.textContent = my_questions[question_index].question; 
@@ -89,18 +109,11 @@ function show_questions() {
     option2.textContent = my_questions[question_index].options[1];
     option3.textContent = my_questions[question_index].options[2];
     option4.textContent = my_questions[question_index].options[3];
-
-    //if the selected option matches the correct answer, display correct 
-    // and increase question index by 1.
-    
-   
-
-    
-        
-    //if the selected option does not match the correct answer, subtract 10 from the timer and display wrong.
-    //when all the questions are answered, return function finish()
 }
 
+//when an option is clicked, 
+//if i click the correct option, page displays "correct"
+//if i click the wrong option, page displays "wrong" & score is decremented by 10
 var option_click = function() {
     var isCorrect = this.innerHTML === my_questions[question_index].answer;
     if (isCorrect) {
@@ -124,18 +137,16 @@ var option_click = function() {
         
     }
 }
- 
+
+//my option_click function is called when an option is clicked
 option1.addEventListener("click", option_click);
 option2.addEventListener("click", option_click);
 option3.addEventListener("click", option_click);
 option4.addEventListener("click", option_click);
 
-view_highscores.addEventListener("click", function(){
-    high_scores_section.style.display = "block";
-    questions_section.style.display = "none";
 
-});
 
+//allows me to submit input gets saved with my score to the highscores page
 submit_score.addEventListener("click", function(){
     localStorage.setItem(your_initials.value, score); 
     high_scores_section.style.display = "block";
