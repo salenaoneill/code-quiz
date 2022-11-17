@@ -26,7 +26,9 @@ MIT License
 
 Timer
 Multiple choice questions
+
 Saving user score
+
 High-score page
 
 ## Deployed Link
